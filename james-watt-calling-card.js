@@ -8,8 +8,14 @@ class JamesWattCallingCard extends HTMLElement {
   connectedCallback() {
     const shadow = this.attachShadow({ mode: "open" });
 
+    // Event listener for clicking on anchor
+    // Event listener for clicking on background
+    // Event listener for clicking on X
+    // All open close events will affect document body and modals themselves
+    // Fade animations on the modal and background
+    // Mobile and Desktop testing
     this.setupGoogleFonts(shadow);
-    this.setupModal(shadow);
+    // this.setupModal(shadow);
     this.setupCard(shadow);
     // this.setupOldModal(shadow);
   }
@@ -107,6 +113,9 @@ class JamesWattCallingCard extends HTMLElement {
   setupCard(shadow) {
     // Work ToDo
     // Update calling card width and height to be account for box-sizing: border-box
+    // Maybe not keep border-box? Porbably best to keep it and iron out the kinks
+    // Maybe add mode to not open the modal
+    // Maybe just add animation to expand the modal to explain what it is
 
     // Create card element
     const card = document.createElement("div");
@@ -156,7 +165,7 @@ class JamesWattCallingCard extends HTMLElement {
       }
 
       * {
-        box-sizing: border-box;
+        // box-sizing: border-box;
       }
     `;
 
