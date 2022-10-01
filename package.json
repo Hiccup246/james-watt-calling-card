@@ -3,10 +3,10 @@
   "customElements": "custom-elements.json",
   "version": "1.0.0",
   "description": "A digital \"calling card\" for the owner of this repository James.Watt",
-  "main": "src/james-watt-calling-card.js",
-  "module": "src/james-watt-calling-card.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "type": "module",
-  "types": "james-watt-calling-card.d.ts",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hiccup246/james-watt-calling-card.git"

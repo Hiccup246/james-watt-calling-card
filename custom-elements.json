@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "src/james-watt-calling-card.js",
+      "path": "src/index.js",
       "declarations": [
         {
           "kind": "class",
@@ -70,7 +70,7 @@
           "name": "james-watt-calling-card",
           "declaration": {
             "name": "JamesWattCallingCard",
-            "module": "src/james-watt-calling-card.js"
+            "module": "src/index.js"
           }
         }
       ]
