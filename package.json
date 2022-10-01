@@ -3,8 +3,8 @@
   "customElements": "custom-elements.json",
   "version": "1.0.0",
   "description": "A digital \"calling card\" for the owner of this repository James.Watt",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "src/james-watt-calling-card.js",
+  "module": "src/james-watt-calling-card.js",
   "type": "module",
   "types": "index.d.ts",
   "repository": {
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Hiccup246/james-watt-calling-card/issues"
   },
-  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme"
+  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
 }
