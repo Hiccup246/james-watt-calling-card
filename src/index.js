@@ -271,6 +271,6 @@ export class JamesWattCallingCard extends HTMLElement {
     document.body.style.overflow = null;
     modal.style.display = "none";
   }
-}
+};
 
 customElements.define("james-watt-calling-card", JamesWattCallingCard);
