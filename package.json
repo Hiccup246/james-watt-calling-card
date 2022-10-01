@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/Hiccup246/james-watt-calling-card/issues"
   },
-  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme",
-  "devDependencies": {
-    "http-server": "^14.1.1"
-  }
+  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme"
 }
