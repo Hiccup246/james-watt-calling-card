@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "2.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "james-watt-calling-card/james-watt-calling-card.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "customElement": true,
+          "name": "JamesWattCallingCard",
+          "tagName": "james-watt-calling-card",
+          "description": "This is the description of the class",
+          "members": [],
+          "events": [],
+          "attributes": [],
+          "superclass": {
+            "name": "HTMLElement"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "JamesWattCallingCard",
+          "declaration": {
+            "name": "JamesWattCallingCard"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "james-watt-calling-card",
+          "declaration": {
+            "name": "JamesWattCallingCard"
+          }
+        }
+      ]
+    }
+  ]
+}

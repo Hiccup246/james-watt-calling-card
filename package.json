@@ -1,0 +1,19 @@
+{
+  "name": "james-watt-calling-card",
+  "customElements": "custom-elements.json",
+  "version": "1.0.0",
+  "description": "A digital \"calling card\" for the owner of this repository James.Watt",
+  "main": "james-watt-calling-card.js",
+  "module": "james-watt-calling-card.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hiccup246/james-watt-calling-card.git"
+  },
+  "author": "James.Watt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hiccup246/james-watt-calling-card/issues"
+  },
+  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme"
+}
