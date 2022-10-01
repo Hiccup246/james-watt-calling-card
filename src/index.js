@@ -1,4 +1,4 @@
-class JamesWattCallingCard extends HTMLElement {
+export class JamesWattCallingCard extends HTMLElement {
   constructor() {
     super();
   }
