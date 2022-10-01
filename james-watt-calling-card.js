@@ -1,9 +1,20 @@
 class JamesWattCallingCard extends HTMLElement {
   constructor() {
     super();
+
+    this.openModalSignature = null;
+    this.closeModalSignature = null;
+    this.cardCallingButton = null;
+    this.modal = null;
   }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    console.log("disconnected");
+    if (!this.modal && !this.callingCardButton) return;
+
+    this.modal.addEventListener("click", this.openModalSignature);
+    this.callingCardButton.addEventListener("click", this.closeModalSignature);
+  }
 
   connectedCallback() {
     // We want to read in three different attributes
@@ -16,18 +27,18 @@ class JamesWattCallingCard extends HTMLElement {
 
     const shadow = this.attachShadow({ mode: "open" });
     const modalBackdrop = this.setupModalBackdrop();
-    const modal = this.setupModal();
+    this.modal = this.setupModal();
 
     this.setupGoogleFonts(shadow);
 
     const callingCard = document.createElement("div");
     callingCard.setAttribute("class", "calling-card");
 
-    const callingCardButton = callingCard.appendChild(
+    this.callingCardButton = callingCard.appendChild(
       document.createElement("button")
     );
-    callingCardButton.innerText = "watt?";
-    callingCardButton.setAttribute("class", "calling-card__button");
+    this.callingCardButton.innerText = "watt?";
+    this.callingCardButton.setAttribute("class", "calling-card__button");
 
     const cardAspectRatio = "2 / 1";
     const fontApectRatio = `calc(${cardHeight}px) / 2.5`;
@@ -138,15 +149,16 @@ class JamesWattCallingCard extends HTMLElement {
       }
     `;
 
-    modal.addEventListener("click", (event) =>
-      this.closeModal(event, modal, modalBackdrop)
-    );
+    this.openModalSignature = (event) =>
+      this.closeModal(event, this.modal, modalBackdrop);
 
-    callingCardButton.addEventListener("click", (event) =>
-      this.openModal(event, shadow, style, modal, modalBackdrop)
-    );
+    this.closeModalSignature = (event) =>
+      this.openModal(event, shadow, style, this.modal, modalBackdrop);
 
-    shadow.append(style, modal);
+    this.modal.addEventListener("click", this.openModalSignature);
+    this.callingCardButton.addEventListener("click", this.closeModalSignature);
+
+    shadow.append(style, this.modal);
     shadow.append(style, callingCard);
   }
 
