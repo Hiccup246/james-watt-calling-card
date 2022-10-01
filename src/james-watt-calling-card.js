@@ -38,15 +38,12 @@ class JamesWattCallingCard extends HTMLElement {
 
     const cardAspectRatio = "2 / 1";
     const fontApectRatio = `calc(${cardHeight}px) / 2.5`;
-    const paddingTopBottom = `calc(calc(1/6)*${cardHeight})`;
-    const paddingLeftRight = `calc(calc(2/6)*${cardHeight})`;
 
     const style = document.createElement("style");
     style.textContent = `
       .calling-card {
         background-color: ${cardBgColor};
         height: ${cardHeight}px;
-        padding: ${paddingTopBottom}px ${paddingLeftRight}px;
         border: 2px solid ${borderColor};
         aspect-ratio: ${cardAspectRatio};
         display: flex;
