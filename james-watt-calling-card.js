@@ -131,12 +131,12 @@ class JamesWattCallingCard extends HTMLElement {
     // Height - Height of the card (Pixels)
     // Text color - Color of the card text (Hex format)
     // Background color - Background color of the card (Hex format)
-    const cardHeight = this.getAttribute("height") || "30";
+    const cardHeight = this.getAttribute("height") || "60";
     const textColor = this.getAttribute("text-color") || "#000000";
     const cardColor = this.getAttribute("card-color") || "#FAF1E3";
 
     const cardAspectRatio = "2 / 1";
-    const fontApectRatio = `calc(${cardHeight}px + 20px) / 2.5`;
+    const fontApectRatio = `calc(${cardHeight}px) / 2.5`;
 
     // Create some CSS to apply to the shadow DOM
     const style = document.createElement("style");
@@ -165,7 +165,7 @@ class JamesWattCallingCard extends HTMLElement {
       }
 
       * {
-        // box-sizing: border-box;
+        box-sizing: border-box;
       }
     `;
 
