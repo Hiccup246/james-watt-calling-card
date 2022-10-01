@@ -1,11 +1,6 @@
-export class JamesWattCallingCard extends HTMLElement {
+class JamesWattCallingCard extends HTMLElement {
   constructor() {
     super();
-
-    this.openModalSignature = null;
-    this.closeModalSignature = null;
-    this.cardCallingButton = null;
-    this.modal = null;
   }
 
   disconnectedCallback() {

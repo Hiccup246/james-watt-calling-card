@@ -4,17 +4,61 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "james-watt-calling-card/james-watt-calling-card.js",
+      "path": "src/james-watt-calling-card.js",
       "declarations": [
         {
           "kind": "class",
           "customElement": true,
           "name": "JamesWattCallingCard",
           "tagName": "james-watt-calling-card",
-          "description": "This is the description of the class",
-          "members": [],
+          "description": "A digital \"calling card\" for the owner of this repository James.Watt",
+          "members": [
+            {
+              "name": "height",
+              "kind": "field"
+            },
+            {
+              "name": "text-color",
+              "kind": "field"
+            },
+            {
+              "name": "bg-color",
+              "kind": "field"
+            },
+            {
+              "name": "modal-bg-color",
+              "kind": "field"
+            },
+            {
+              "name": "modal-text-color",
+              "kind": "field"
+            },
+            {
+              "name": "border-color",
+              "kind": "field"
+            }
+          ],
           "events": [],
-          "attributes": [],
+          "attributes": [
+            {
+              "name": "height"
+            },
+            {
+              "name": "text-color"
+            },
+            {
+              "name": "bg-color"
+            },
+            {
+              "name": "modal-bg-color"
+            },
+            {
+              "name": "modal-text-color"
+            },
+            {
+              "name": "border-color"
+            }
+          ],
           "superclass": {
             "name": "HTMLElement"
           }
@@ -22,17 +66,11 @@
       ],
       "exports": [
         {
-          "kind": "js",
-          "name": "JamesWattCallingCard",
-          "declaration": {
-            "name": "JamesWattCallingCard"
-          }
-        },
-        {
           "kind": "custom-element-definition",
           "name": "james-watt-calling-card",
           "declaration": {
-            "name": "JamesWattCallingCard"
+            "name": "JamesWattCallingCard",
+            "module": "src/james-watt-calling-card.js"
           }
         }
       ]

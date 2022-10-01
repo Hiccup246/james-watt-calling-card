@@ -2,7 +2,7 @@
 ![](https://img.shields.io/github/license/Hiccup246/james-watt-calling-card)
 ![](https://img.shields.io/github/languages/code-size/Hiccup246/james-watt-calling-card)
 
-This project represents a digital "calling card" for the owner of this repository James. Watt.
+This project represents a digital "calling card" for the owner of this repository James.Watt.
 
 ![](https://i.imgur.com/oZxhK3U.png)
 
