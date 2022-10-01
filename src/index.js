@@ -1,4 +1,4 @@
-export class JamesWattCallingCard extends HTMLElement {
+class JamesWattCallingCard extends HTMLElement {
   constructor() {
     super();
   }
@@ -271,6 +271,8 @@ export class JamesWattCallingCard extends HTMLElement {
     document.body.style.overflow = null;
     modal.style.display = "none";
   }
-};
+}
 
 customElements.define("james-watt-calling-card", JamesWattCallingCard);
+
+export { JamesWattCallingCard };
