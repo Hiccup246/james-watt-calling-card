@@ -58,7 +58,6 @@ class JamesWattCallingCard extends HTMLElement {
     this.callingCardButton.setAttribute("class", "calling-card__button");
 
     const cardAspectRatio = "2 / 1";
-
     const style = document.createElement("style");
     style.innerHTML = `
       .calling-card {
