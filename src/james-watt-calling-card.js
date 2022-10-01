@@ -57,14 +57,13 @@ class JamesWattCallingCard extends HTMLElement {
     this.callingCardButton.innerText = "watt?";
     this.callingCardButton.setAttribute("class", "calling-card__button");
 
-    const cardAspectRatio = "2 / 1";
     const style = document.createElement("style");
     style.innerHTML = `
       .calling-card {
         background-color: var(--bg-color);
         height: var(--height);
         border: 2px solid var(--border-color);
-        aspect-ratio: ${cardAspectRatio};
+        width: calc(var(--height)*2);
         display: flex;
       }
 
