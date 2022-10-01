@@ -21,3 +21,8 @@ The purpose of this project is to:
 # TODO
 - Make the anchor tag open up a modal that informs the user about where they are being redirected to
 - Turn git repo into a shareable npm package
+- Maybe turn entire project to typescript
+- Think about having dynamic attrobutes
+- Think about what should be attributes
+- Implement a javascript compiler
+- Publish NPM module
