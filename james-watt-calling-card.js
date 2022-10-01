@@ -19,13 +19,12 @@ class JamesWattCallingCard extends HTMLElement {
   }
 
   connectedCallback() {
-    // We want to read in three different attributes
-    // Height - Height of the card (Pixels)
-    // Text color - Color of the card text (Hex format)
-    // Background color - Background color of the card (Hex format)
     const cardHeight = this.getAttribute("height") || "60";
-    const textColor = this.getAttribute("text-color") || "#000000";
-    const cardColor = this.getAttribute("card-color") || "#FAF1E3";
+    const cardTextColor = this.getAttribute("text-color") || "#000000";
+    const cardBgColor = this.getAttribute("bg-color") || "#FAF1E3";
+    const modalBgColor = this.getAttribute("modal-bg-color") || "#FAF1E3";
+    const modalTextColor = this.getAttribute("modal-text-color") || "#000000";
+    const borderColor = this.getAttribute("border-color") || "#000000";
 
     const shadow = this.attachShadow({ mode: "open" });
     const modalBackdrop = this.setupModalBackdrop();
@@ -44,20 +43,22 @@ class JamesWattCallingCard extends HTMLElement {
 
     const cardAspectRatio = "2 / 1";
     const fontApectRatio = `calc(${cardHeight}px) / 2.5`;
+    const paddingTopBottom = `calc(calc(1/6)*${cardHeight})`;
+    const paddingLeftRight = `calc(calc(2/6)*${cardHeight})`;
 
     const style = document.createElement("style");
     style.textContent = `
       .calling-card {
-        background-color: ${cardColor};
+        background-color: ${cardBgColor};
         height: ${cardHeight}px;
-        padding: 10px 15px;
-        border: 2px solid ${textColor};
+        padding: ${paddingTopBottom}px ${paddingLeftRight}px;
+        border: 2px solid ${borderColor};
         aspect-ratio: ${cardAspectRatio};
         display: flex;
       }
 
       .calling-card__button {
-        color: ${textColor};
+        color: ${cardTextColor};
         text-decoration: none;
         font-size: calc(${fontApectRatio});
         margin: auto auto;
@@ -68,7 +69,7 @@ class JamesWattCallingCard extends HTMLElement {
       .calling-card__button:hover {
         cursor: pointer;
         text-decoration: underline;
-        text-decoration-color: ${textColor};
+        text-decoration-color: ${cardTextColor};
       }
 
       .modal-backdrop {
@@ -126,16 +127,17 @@ class JamesWattCallingCard extends HTMLElement {
         pointer-events: auto;
         background-clip: padding-box;
         outline: 0;
-        border: 2px solid black;
+        border: 2px solid ${borderColor};
         text-align: center;
         padding: 10px;
-        background-color: ${cardColor};
+        color: ${modalTextColor};
+        background-color: ${modalBgColor};
       }
 
       .portfolio-link {
         margin-top: 16px;
-        color: black;
-        text-decoration-color: black;
+        color: ${modalTextColor};
+        text-decoration-color: ${modalTextColor};
         text-underline-offset: 0.2em;
         transition: text-decoration-thickness 1s linear, text-underline-offset 1s linear;
       }
