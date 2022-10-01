@@ -9,11 +9,13 @@ class JamesWattCallingCard extends HTMLElement {
   }
 
   disconnectedCallback() {
-    console.log("disconnected");
     if (!this.modal && !this.callingCardButton) return;
 
-    this.modal.addEventListener("click", this.openModalSignature);
-    this.callingCardButton.addEventListener("click", this.closeModalSignature);
+    this.modal.removeEventListener("click", this.openModalSignature);
+    this.callingCardButton.removeEventListener(
+      "click",
+      this.closeModalSignature
+    );
   }
 
   connectedCallback() {
