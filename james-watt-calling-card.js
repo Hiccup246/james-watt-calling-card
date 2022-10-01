@@ -15,9 +15,198 @@ class JamesWattCallingCard extends HTMLElement {
     // Fade animations on the modal and background
     // Mobile and Desktop testing
     this.setupGoogleFonts(shadow);
-    // this.setupModal(shadow);
-    this.setupCard(shadow);
-    // this.setupOldModal(shadow);
+
+    const modalBackdrop = document.createElement("div");
+    modalBackdrop.setAttribute("class", "modal-backdrop");
+
+    // modalBackdrop.addEventListener(
+    //   "click",
+    //   (event) => this.closeModal(event, modalBackdrop),
+    //   false
+    // );
+
+    const modal = document.createElement("div");
+    modal.setAttribute("class", "modal");
+
+    const modalDialog = modal.appendChild(document.createElement("div"));
+    modalDialog.setAttribute("class", "modal-dialog");
+
+    const modalContent = modalDialog.appendChild(document.createElement("div"));
+    modalContent.setAttribute("class", "modal-content");
+
+    const headlineText = modalContent.appendChild(document.createElement("p"));
+    headlineText.innerText = "Curious one aren't you?";
+
+    const modalDescription = modalContent.appendChild(
+      document.createElement("p")
+    );
+    modalDescription.innerText =
+      "You have clicked on the calling card for the creator of this site...James.Watt";
+
+    const modalLink = modalContent.appendChild(document.createElement("a"));
+    modalLink.setAttribute("class", "modal-link");
+    modalLink.setAttribute("href", "https://www.jameswatt.io/");
+    modalLink.innerText = "Continue to his portfolio";
+
+    // Work ToDo
+    // Update calling card width and height to be account for box-sizing: border-box
+    // Maybe not keep border-box? Porbably best to keep it and iron out the kinks
+    // Maybe add mode to not open the modal
+    // Maybe just add animation to expand the modal to explain what it is
+
+    // Create card element
+    const card = document.createElement("div");
+    card.setAttribute("class", "card");
+
+    // Setting the card anchor text
+    const cardAnchor = card.appendChild(document.createElement("a"));
+    cardAnchor.innerText = "watt?";
+    // cardAnchor.setAttribute("href", "https://www.jameswatt.io/");
+    cardAnchor.setAttribute("class", "card-anchor");
+
+    // We want to read in three different attributes
+    // Height - Height of the card (Pixels)
+    // Text color - Color of the card text (Hex format)
+    // Background color - Background color of the card (Hex format)
+    const cardHeight = this.getAttribute("height") || "60";
+    const textColor = this.getAttribute("text-color") || "#000000";
+    const cardColor = this.getAttribute("card-color") || "#FAF1E3";
+
+    const cardAspectRatio = "2 / 1";
+    const fontApectRatio = `calc(${cardHeight}px) / 2.5`;
+
+    // Create some CSS to apply to the shadow DOM
+    const style = document.createElement("style");
+    style.textContent = `
+      .card {
+        background-color: ${cardColor};
+        height: ${cardHeight}px;
+        padding: 10px 15px;
+        border: 2px solid ${textColor};
+        aspect-ratio: ${cardAspectRatio};
+        display: flex;
+      }
+
+      .card-anchor {
+        color: ${textColor};
+        text-decoration: none;
+        font-size: calc(${fontApectRatio});
+        margin: auto auto;
+      }
+
+      .card-anchor:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: ${textColor};
+      }
+
+      .fade {
+        transition: opacity .15s linear;
+      }
+
+      .modal-backdrop {
+        display: block;
+        z-index: 1050;
+        background-color: black;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0.5;
+        transition: opacity 3s linear;
+      }
+
+      .modal-backdrop.fade {
+        opacity: 0;
+      }
+
+      .modal-backdrop.show {
+        opacity: 0.5;
+      }
+
+      .modal-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        pointer-events: auto;
+        background-clip: padding-box;
+        outline: 0;
+        border: 2px solid black;
+        text-align: center;
+        padding: 10px;
+        background-color: ${cardColor};
+      }
+
+      p {
+        // width: fit-content;
+      }
+
+      .modal {
+        z-index: 1055;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      .modal-link {
+        margin-top: 16px;
+        color: black;
+        text-decoration-color: black;
+
+        text-underline-offset: 0.2em;
+        transition: text-decoration-thickness 1s linear, text-underline-offset 1s linear;
+      }
+
+      .modal-link:hover {
+        text-decoration-thickness: 2px;
+        text-underline-offset: 1px;
+      }
+
+      .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: 0.5rem;
+        pointer-events: none;
+        background-color: white;
+        font-size: 1rem;
+        z-index: 1060;
+        margin: 0.5rem;
+      }
+
+      @media (min-width: 576px) {
+         .modal-dialog {
+          max-width: 500px;
+          margin-right: auto;
+          margin-left: auto;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        font-family: 'Space Mono', monospace;
+      }
+    `;
+
+    // shadow.append(style, modalBackdrop);
+    modal.addEventListener("click", (event) =>
+      this.closeModal(event, modalBackdrop, modal)
+    );
+    shadow.append(style, modal);
+
+    cardAnchor.addEventListener("click", (event) =>
+      this.handleAnchorClick(event, shadow, modalBackdrop, style, modal)
+    );
+    shadow.append(style, card);
   }
 
   setupGoogleFonts(shadow) {
@@ -42,18 +231,43 @@ class JamesWattCallingCard extends HTMLElement {
     shadow.appendChild(googleFont);
   }
 
+  closeModal(event, modalBackdrop, modal) {
+    if (event.target.classList[0] != "modal") return;
+    console.log(event.target);
+    console.log(event.target.classList);
+    console.log(event);
+    modalBackdrop.remove();
+    document.body.style.overflow = null;
+    modal.style.display = "none";
+  }
+
   setupModal(shadow) {
     //bootstrap approach
     const modalBackdrop = document.createElement("div");
     modalBackdrop.setAttribute("class", "modal-backdrop");
 
+    // modalBackdrop.addEventListener(
+    //   "click",
+    //   (event) => this.closeModal(event, modalBackdrop),
+    //   false
+    // );
+
     const modal = document.createElement("div");
     modal.setAttribute("class", "modal");
+
+    modalBackdrop.addEventListener(
+      "click",
+      (event) => this.closeModal(event, modalBackdrop, modal),
+      false
+    );
 
     const modalDialog = modal.appendChild(document.createElement("div"));
     modalDialog.setAttribute("class", "modal-dialog");
 
-    const modalText = modalDialog.appendChild(document.createElement("p"));
+    const modalContent = modalDialog.appendChild(document.createElement("div"));
+    modalContent.setAttribute("class", "modal-content");
+
+    const modalText = modalContent.appendChild(document.createElement("p"));
     modalText.innerText = "Testing the internal text";
 
     // Bootstrap work todo
@@ -67,8 +281,9 @@ class JamesWattCallingCard extends HTMLElement {
     const style = document.createElement("style");
     style.textContent = `
       .modal-backdrop {
+        display: block;
         opacity: 0.5;
-        z-index: 1000;
+        z-index: 1050;
         background-color: black;
         position: fixed;
         top: 0;
@@ -78,8 +293,19 @@ class JamesWattCallingCard extends HTMLElement {
         transition: opacity, .15s, linear;
       }
 
+      .modal-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        pointer-events: auto;
+        background-clip: padding-box;
+        outline: 0;
+      }
+
       .modal {
-        z-index: 1001;
+        z-index: 1055;
+        display: block;
         position: fixed;
         top: 0;
         left: 0;
@@ -99,6 +325,7 @@ class JamesWattCallingCard extends HTMLElement {
         pointer-events: none;
         background-color: white;
         font-size: 1rem;
+        z-index: 1060;
       }
 
       * {
@@ -124,7 +351,7 @@ class JamesWattCallingCard extends HTMLElement {
     // Setting the card anchor text
     const cardAnchor = card.appendChild(document.createElement("a"));
     cardAnchor.innerText = "watt?";
-    cardAnchor.setAttribute("href", "https://www.jameswatt.io/");
+    // cardAnchor.setAttribute("href", "https://www.jameswatt.io/");
     cardAnchor.setAttribute("class", "card-anchor");
 
     // We want to read in three different attributes
@@ -169,7 +396,18 @@ class JamesWattCallingCard extends HTMLElement {
       }
     `;
 
+    cardAnchor.addEventListener(
+      "click",
+      (event) => this.handleAnchorClick(event, shadow),
+      false
+    );
     shadow.append(style, card);
+  }
+
+  handleAnchorClick(event, shadow, modalBackdrop, style, modal) {
+    shadow.append(style, modalBackdrop);
+    document.body.style.overflow = "hidden";
+    modal.style.display = "block";
   }
 
   setupOldModal(shadow) {
