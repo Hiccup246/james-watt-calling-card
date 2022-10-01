@@ -22,7 +22,5 @@ The purpose of this project is to:
 - Turn git repo into a shareable npm package
 - Maybe turn entire project to typescript
 - Think about what should and should not be attributes
-- Implement a javascript compiler
-- Implement/Research methods for developing ES modules locally
-- Update this readme
+- Update this readme with commands for local development
 - Publish NPM module
