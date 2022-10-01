@@ -3,6 +3,33 @@ class JamesWattCallingCard extends HTMLElement {
     super();
   }
 
+  static get observedAttributes() {
+    return [
+      "height",
+      "text-color",
+      "bg-color",
+      "modal-bg-color",
+      "modal-text-color",
+      "border-color",
+      "font-aspect-ratio",
+    ];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue == newValue) return;
+
+    if (name == "height") {
+      this.style.setProperty(`--${name}`, `${newValue}px`);
+
+      this.style.setProperty(
+        "--font-aspect-ratio",
+        `calc(var(--height) / 2.5)`
+      );
+    } else {
+      this.style.setProperty(`--${name}`, newValue);
+    }
+  }
+
   disconnectedCallback() {
     if (!this.modal && !this.callingCardButton) return;
 
@@ -14,17 +41,11 @@ class JamesWattCallingCard extends HTMLElement {
   }
 
   connectedCallback() {
-    const cardHeight = this.getAttribute("height") || "60";
-    const cardTextColor = this.getAttribute("text-color") || "#000000";
-    const cardBgColor = this.getAttribute("bg-color") || "#FAF1E3";
-    const modalBgColor = this.getAttribute("modal-bg-color") || "#FAF1E3";
-    const modalTextColor = this.getAttribute("modal-text-color") || "#000000";
-    const borderColor = this.getAttribute("border-color") || "#000000";
-
     const shadow = this.attachShadow({ mode: "open" });
     const modalBackdrop = this.setupModalBackdrop();
     this.modal = this.setupModal();
 
+    this.setupCssVariables();
     this.setupGoogleFonts(shadow);
 
     const callingCard = document.createElement("div");
@@ -37,22 +58,21 @@ class JamesWattCallingCard extends HTMLElement {
     this.callingCardButton.setAttribute("class", "calling-card__button");
 
     const cardAspectRatio = "2 / 1";
-    const fontApectRatio = `calc(${cardHeight}px) / 2.5`;
 
     const style = document.createElement("style");
-    style.textContent = `
+    style.innerHTML = `
       .calling-card {
-        background-color: ${cardBgColor};
-        height: ${cardHeight}px;
-        border: 2px solid ${borderColor};
+        background-color: var(--bg-color);
+        height: var(--height);
+        border: 2px solid var(--border-color);
         aspect-ratio: ${cardAspectRatio};
         display: flex;
       }
 
       .calling-card__button {
-        color: ${cardTextColor};
+        color: var(--text-color);
         text-decoration: none;
-        font-size: calc(${fontApectRatio});
+        font-size: var(--font-aspect-ratio);
         margin: auto auto;
         background-color: unset;
         border: none;
@@ -61,7 +81,7 @@ class JamesWattCallingCard extends HTMLElement {
       .calling-card__button:hover {
         cursor: pointer;
         text-decoration: underline;
-        text-decoration-color: ${cardTextColor};
+        text-decoration-color: var(--text-color);
       }
 
       .modal-backdrop {
@@ -119,17 +139,17 @@ class JamesWattCallingCard extends HTMLElement {
         pointer-events: auto;
         background-clip: padding-box;
         outline: 0;
-        border: 2px solid ${borderColor};
+        border: 2px solid var(--border-color);
         text-align: center;
         padding: 10px;
-        color: ${modalTextColor};
-        background-color: ${modalBgColor};
+        color: var(--modal-text-color);
+        background-color: var(--modal-bg-color);
       }
 
       .portfolio-link {
         margin-top: 16px;
-        color: ${modalTextColor};
-        text-decoration-color: ${modalTextColor};
+        color: var(--modal-text-color);
+        text-decoration-color: var(--modal-text-color);
         text-underline-offset: 0.2em;
         transition: text-decoration-thickness 1s linear, text-underline-offset 1s linear;
       }
@@ -156,6 +176,34 @@ class JamesWattCallingCard extends HTMLElement {
 
     shadow.append(style, this.modal);
     shadow.append(style, callingCard);
+  }
+
+  setupCssVariables() {
+    this.style.setProperty(
+      "--height",
+      `${this.getAttribute("height") || "60"}px`
+    );
+    this.style.setProperty(
+      "--text-color",
+      this.getAttribute("text-color") || "#000000"
+    );
+    this.style.setProperty(
+      "--bg-color",
+      this.getAttribute("bg-color") || "#FAF1E3"
+    );
+    this.style.setProperty(
+      "--modal-bg-color",
+      this.getAttribute("modal-bg-color") || "#FAF1E3"
+    );
+    this.style.setProperty(
+      "--modal-text-color",
+      this.getAttribute("modal-text-color") || "#000000"
+    );
+    this.style.setProperty(
+      "--border-color",
+      this.getAttribute("border-color") || "#000000"
+    );
+    this.style.setProperty("--font-aspect-ratio", `calc(var(--height) / 2.5)`);
   }
 
   setupModalBackdrop() {
