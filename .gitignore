@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Ignore development files
-src/index.html
+index.html
 
 # dependencies
 /node_modules
