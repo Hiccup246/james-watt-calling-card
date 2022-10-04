@@ -1,4 +1,4 @@
-import { JamesWattCallingCard } from "./index.js";
+import { JamesWattCallingCard } from "./src/james-watt-calling-card.js";
 
 declare global {
   interface HTMLElementTagNameMap {
