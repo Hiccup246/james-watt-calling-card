@@ -9,9 +9,13 @@ This project represents a digital "calling card" for the owner of this repositor
 <br>
 
 # Description
-This project represents a small framework agnostic web component that provides a link back to the personal portfolio of James Watt. This allows any project to conveniently and consistently direct curious users back to his portfolio site.
+This project is a small framework agnostic web component with the following features:
+- A small styled card which when clicked opens a modal
+- A modal which dims the background and disables scrolling
+- A modal which provides a link to the personal portfolio of James Watt.
 
-The purpose of this project is to:
+
+This allows any project to conveniently, consistently and in an accessible manner direct curious users back to the James Watt portfolio site. The goal/purpose being to:
 - Improve SEO for the James Watt portfolio site by increasing the number of backlinks to it
 - To help establish a consistent brand for James Watt
 - To aid in my own understanding of web components and npm
@@ -68,8 +72,10 @@ Finally, you can serve this file. If you are using live-server and have created 
 <br>
 
 # TODO
-- Turn git repo into a shareable npm package
-- Maybe turn entire project to typescript
 - Think about what should and should not be attributes
+  - Namely the height attribute. This should perhaps be inherited from its parent component. This way the hieght is controlled dynamically via css and not attributes. Perhaps take a look at other components with height attributes and draw comparisons. For example, the img tag has a height attribute.
+- Turn git repo into a shareable npm package
+  - Publish NPM module
+
 - Update this readme with commands for local development
-- Publish NPM module
+- Maybe turn entire project to typescript
