@@ -3,8 +3,8 @@
   "customElements": "custom-elements.json",
   "version": "1.0.0",
   "description": "A digital \"calling card\" for the owner of this repository James.Watt",
-  "main": "src/james-watt-calling-card.js",
-  "module": "src/james-watt-calling-card.js",
+  "main": "index.js",
+  "module": "index.js",
   "type": "module",
   "types": "index.d.ts",
   "repository": {
