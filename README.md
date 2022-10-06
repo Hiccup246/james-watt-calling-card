@@ -43,7 +43,7 @@ The width of this web component is calculated from the height of the component b
 
 ```css
 .component-wrapper {
-  height: 200px
+  height: 200px;
 }
 
 james-watt-calling-card {
