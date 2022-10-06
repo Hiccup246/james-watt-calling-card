@@ -16,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/Hiccup246/james-watt-calling-card/issues"
   },
-  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme"
+  "homepage": "https://github.com/Hiccup246/james-watt-calling-card#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "james",
+    "jameswatt",
+    "calling-card",
+    "software",
+    "web-components"
+  ]
 }
