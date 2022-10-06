@@ -177,10 +177,6 @@ class JamesWattCallingCard extends HTMLElement {
 
     shadow.append(style, this.modal);
     shadow.append(style, callingCard);
-
-    // this.style.setProperty('height', "'inherit'");
-    // this.style.height = 'inherit';
-    // this.style.maxHeight = 'inherit';
   }
 
   setupCssVariables() {

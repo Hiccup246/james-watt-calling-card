@@ -52,7 +52,7 @@ Once you have installed a development server you can create a html file with the
   <h1 class="center-align">
     Custom James.Watt calling card
   </h1>
-  <div class="center-align">
+  <div class="calling-card-wrapper center-align">
     <james-watt-calling-card></james-watt-calling-card>
   </div>
 </body>
@@ -61,6 +61,10 @@ Once you have installed a development server you can create a html file with the
     margin: auto auto;
     width: fit-content;
     margin-bottom: 20px;
+  }
+
+  .calling-card-wrapper {
+    height: 200px;
   }
 </style>
 </html>
