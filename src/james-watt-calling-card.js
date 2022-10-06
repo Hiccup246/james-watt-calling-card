@@ -47,10 +47,6 @@ class JamesWattCallingCard extends HTMLElement {
 
     const style = document.createElement("style");
     style.innerText = `
-      :host {
-        max-height: inherit;
-      }
-
       .calling-card {
         background-color: var(--bg-color);
         height: 100%;

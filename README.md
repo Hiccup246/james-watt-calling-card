@@ -20,6 +20,17 @@ This allows any project to conveniently, consistently and in an accessible manne
 - To help establish a consistent brand for James Watt
 - To aid in my own understanding of web components and npm
 
+# Controlling component size
+The component itself has a locked aspect ratio based on its height. This means that the components width is automatically set and calculated from the height.
+
+# Component Attributes
+
+
+```html
+<james-watt-calling-card>
+</james-watt-calling-card>
+```
+
 <br>
 
 # Usage
