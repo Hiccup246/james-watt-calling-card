@@ -14,10 +14,6 @@
           "description": "A digital \"calling card\" for the owner of this repository James.Watt",
           "members": [
             {
-              "name": "height",
-              "kind": "field"
-            },
-            {
               "name": "text-color",
               "kind": "field"
             },
@@ -40,9 +36,6 @@
           ],
           "events": [],
           "attributes": [
-            {
-              "name": "height"
-            },
             {
               "name": "text-color"
             },
