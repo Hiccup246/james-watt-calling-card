@@ -5,29 +5,17 @@ class JamesWattCallingCard extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      "height",
       "text-color",
       "bg-color",
       "modal-bg-color",
       "modal-text-color",
-      "border-color",
-      "font-aspect-ratio",
+      "border-color"
     ];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue == newValue) return;
-
-    if (name == "height") {
-      this.style.setProperty(`--${name}`, `${newValue}px`);
-
-      this.style.setProperty(
-        "--font-aspect-ratio",
-        `calc(var(--height) / 2.5)`
-      );
-    } else {
-      this.style.setProperty(`--${name}`, newValue);
-    }
+    this.style.setProperty(`--${name}`, newValue);
   }
 
   disconnectedCallback() {
@@ -58,19 +46,24 @@ class JamesWattCallingCard extends HTMLElement {
     this.callingCardButton.setAttribute("class", "calling-card__button");
 
     const style = document.createElement("style");
-    style.innerHTML = `
+    style.innerText = `
+      :host {
+        max-height: inherit;
+      }
+
       .calling-card {
         background-color: var(--bg-color);
-        height: var(--height);
+        height: 100%;
+        max-height: inherit;
         border: 2px solid var(--border-color);
-        width: calc(var(--height)*2);
+        width: auto;
+        aspect-ratio: 2/1;
         display: flex;
       }
 
       .calling-card__button {
         color: var(--text-color);
         text-decoration: none;
-        font-size: var(--font-aspect-ratio);
         margin: auto auto;
         background-color: unset;
         border: none;
@@ -172,15 +165,25 @@ class JamesWattCallingCard extends HTMLElement {
     this.modal.addEventListener("click", this.openModalSignature);
     this.callingCardButton.addEventListener("click", this.closeModalSignature);
 
+    const resizeObserver = new ResizeObserver((entries) => {    
+      for (const entry of entries) {
+        if (entry.borderBoxSize) {
+          entry.target.childNodes[0].style.fontSize = entry.borderBoxSize[0].blockSize/2.5 + "px"
+        }
+      }
+    });
+    
+    resizeObserver.observe(callingCard);
+
     shadow.append(style, this.modal);
     shadow.append(style, callingCard);
+
+    // this.style.setProperty('height', "'inherit'");
+    // this.style.height = 'inherit';
+    // this.style.maxHeight = 'inherit';
   }
 
   setupCssVariables() {
-    this.style.setProperty(
-      "--height",
-      `${this.getAttribute("height") || "60"}px`
-    );
     this.style.setProperty(
       "--text-color",
       this.getAttribute("text-color") || "#000000"
@@ -201,7 +204,6 @@ class JamesWattCallingCard extends HTMLElement {
       "--border-color",
       this.getAttribute("border-color") || "#000000"
     );
-    this.style.setProperty("--font-aspect-ratio", `calc(var(--height) / 2.5)`);
   }
 
   setupModalBackdrop() {
