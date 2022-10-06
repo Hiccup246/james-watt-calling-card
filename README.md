@@ -20,15 +20,35 @@ This allows any project to conveniently, consistently and in an accessible manne
 - To help establish a consistent brand for James Watt
 - To aid in my own understanding of web components and npm
 
-# Controlling component size
-The component itself has a locked aspect ratio based on its height. This means that the components width is automatically set and calculated from the height.
-
 # Component Attributes
+The component itself has a variety of color attributes which should be set in HEX format and allow for cosmetic modification.
+- `text-color`
+- `bg-color`
+- `modal-bg-color`
+- `modal-text-color`
+- `border-color`
 
-
+Applying all these attributes would result in html template such as:
 ```html
-<james-watt-calling-card>
+<james-watt-calling-card 
+  text-color="#000"
+  bg-color="#000"
+  modal-bg-color="#000"
+  modal-text-color="#000"
+  border-color="#000">
 </james-watt-calling-card>
+```
+# Controlling component size
+The width of this web component is calculated from the height of the component based on a set aspect ratio. As a result to control the components size one must apply CSS to either the root component or a wrapper element.
+
+```css
+.component-wrapper {
+  height: 200px
+}
+
+james-watt-calling-card {
+  height: 200px;
+}
 ```
 
 <br>
@@ -86,11 +106,7 @@ Finally, you can serve this file. If you are using live-server and have created 
 
 <br>
 
-# TODO
-- Think about what should and should not be attributes
-  - Namely the height attribute. This should perhaps be inherited from its parent component. This way the hieght is controlled dynamically via css and not attributes. Perhaps take a look at other components with height attributes and draw comparisons. For example, the img tag has a height attribute.
+# Future Features
 - Turn git repo into a shareable npm package
   - Publish NPM module
-
-- Update this readme with commands for local development
 - Maybe turn entire project to typescript
