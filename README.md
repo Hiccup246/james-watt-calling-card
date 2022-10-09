@@ -56,7 +56,8 @@ This method works for all types of frontend frameworks and involves adding a scr
 <head>
   <script 
     type="module" 
-    src="https://unpkg.com/james-watt-calling-card@1.0.0/index.js">
+    src="https://unpkg.com/james-watt-calling-card/index.js"
+  ></script>
 </head>
 
 <body>
