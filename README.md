@@ -101,23 +101,25 @@ Once you have installed a development server you can create an HTML file and add
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="module" src="./index.js"></script>
 </head>
-<body style="height: 100vh; width: 100vw;">
-  <h1 class="calling-card-wrapper">
-    Custom James.Watt calling card
+
+<body style="height: 100vh; width: 100vw; margin: 0;">
+  <h1 class="center-align">
+    Custom James Watt calling card
   </h1>
 
-  <james-watt-calling-card class="calling-card-wrapper">
-    Made by James. Watt
+  <james-watt-calling-card class="center-align">
+    Made by James Watt
   </james-watt-calling-card>
 
-  <james-watt-calling-card class="calling-card-wrapper">
+  <james-watt-calling-card class="center-align">
     <img src="https://via.placeholder.com/150">
   </james-watt-calling-card>
 </body>
 <style>
-  .calling-card-wrapper {
+  .center-align {
     margin: 30px auto;
     width: fit-content;
+    text-align: center;
     display: block;
   }
 

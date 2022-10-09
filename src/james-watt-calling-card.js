@@ -140,6 +140,10 @@ class JamesWattCallingCard extends HTMLElement {
       .portfolio-cta .link:hover ~ .right-arrow {
         transform: translateX(-6px);
       }
+
+      * {
+        box-sizing: border-box;
+      } 
     `;
 
     this.openModalSignature = (event) =>
