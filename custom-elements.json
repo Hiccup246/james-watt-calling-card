@@ -14,14 +14,6 @@
           "description": "A digital \"calling card\" for the owner of this repository James.Watt",
           "members": [
             {
-              "name": "text-color",
-              "kind": "field"
-            },
-            {
-              "name": "bg-color",
-              "kind": "field"
-            },
-            {
               "name": "modal-bg-color",
               "kind": "field"
             },
@@ -30,18 +22,12 @@
               "kind": "field"
             },
             {
-              "name": "border-color",
+              "name": "modal-border-color",
               "kind": "field"
             }
           ],
           "events": [],
           "attributes": [
-            {
-              "name": "text-color"
-            },
-            {
-              "name": "bg-color"
-            },
             {
               "name": "modal-bg-color"
             },
@@ -49,7 +35,7 @@
               "name": "modal-text-color"
             },
             {
-              "name": "border-color"
+              "name": "modal-border-color"
             }
           ],
           "superclass": {
