@@ -5,11 +5,9 @@ class JamesWattCallingCard extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      "text-color",
-      "bg-color",
       "modal-bg-color",
       "modal-text-color",
-      "border-color"
+      "modal-border-color"
     ];
   }
 
@@ -19,10 +17,10 @@ class JamesWattCallingCard extends HTMLElement {
   }
 
   disconnectedCallback() {
-    if (!this.modal && !this.callingCardButton) return;
+    if (!this.modal && !this.slotElement) return;
 
     this.modal.removeEventListener("click", this.openModalSignature);
-    this.callingCardButton.removeEventListener(
+    this.slotElement.removeEventListener(
       "click",
       this.closeModalSignature
     );
@@ -33,42 +31,21 @@ class JamesWattCallingCard extends HTMLElement {
     const modalBackdrop = this.setupModalBackdrop();
     this.modal = this.setupModal();
 
-    this.setupCssVariables();
     this.setupGoogleFonts(shadow);
 
-    const callingCard = document.createElement("div");
-    callingCard.setAttribute("class", "calling-card");
-
-    this.callingCardButton = callingCard.appendChild(
-      document.createElement("button")
-    );
-    this.callingCardButton.innerText = "watt?";
-    this.callingCardButton.setAttribute("class", "calling-card__button");
+    this.slotElement = document.createElement("slot");
+    this.slotElement.setAttribute("class", "slot")
 
     const style = document.createElement("style");
     style.innerText = `
-      .calling-card {
-        background-color: var(--bg-color);
-        height: 100%;
-        max-height: inherit;
-        border: 2px solid var(--border-color);
-        width: auto;
-        aspect-ratio: 2/1;
-        display: flex;
+      :host {
+        --modal-bg-color: ${this.getAttribute("modal-bg-color") || "#FAF1E3"};
+        --modal-text-color: ${this.getAttribute("modal-text-color") || "#000000"};
+        --modal-border-color: ${this.getAttribute("modal-border-color") || "#000000"};
       }
 
-      .calling-card__button {
-        color: var(--text-color);
-        text-decoration: none;
-        margin: auto auto;
-        background-color: unset;
-        border: none;
-      }
-
-      .calling-card__button:hover {
+      .slot {
         cursor: pointer;
-        text-decoration: underline;
-        text-decoration-color: var(--text-color);
       }
 
       .modal-backdrop {
@@ -96,18 +73,17 @@ class JamesWattCallingCard extends HTMLElement {
         overflow-y: auto;
         outline: 0;
         padding: 0;
-        margin: 0;
+        font-family: 'Space Mono', monospace;
       }
 
       .modal__modal-dialog {
         position: relative;
         width: auto;
-        margin: 0.5rem;
+        margin: 50px 0.5rem 0.5rem 0.5rem;
         pointer-events: none;
         background-color: white;
         font-size: 1rem;
         z-index: 1060;
-        margin: 0.5rem;
       }
 
       @media (min-width: 576px) {
@@ -126,7 +102,7 @@ class JamesWattCallingCard extends HTMLElement {
         pointer-events: auto;
         background-clip: padding-box;
         outline: 0;
-        border: 2px solid var(--border-color);
+        border: 2px solid var(--modal-border-color);
         text-align: center;
         padding: 10px;
         color: var(--modal-text-color);
@@ -134,7 +110,8 @@ class JamesWattCallingCard extends HTMLElement {
       }
 
       .portfolio-link {
-        margin-top: 16px;
+        width: fit-content;
+        margin: 16px auto 0 auto;
         color: var(--modal-text-color);
         text-decoration-color: var(--modal-text-color);
         text-underline-offset: 0.2em;
@@ -145,11 +122,6 @@ class JamesWattCallingCard extends HTMLElement {
         text-decoration-thickness: 2px;
         text-underline-offset: 1px;
       }
-
-      * {
-        box-sizing: border-box;
-        font-family: 'Space Mono', monospace;
-      }
     `;
 
     this.openModalSignature = (event) =>
@@ -159,43 +131,10 @@ class JamesWattCallingCard extends HTMLElement {
       this.openModal(event, shadow, style, this.modal, modalBackdrop);
 
     this.modal.addEventListener("click", this.openModalSignature);
-    this.callingCardButton.addEventListener("click", this.closeModalSignature);
-
-    const resizeObserver = new ResizeObserver((entries) => {    
-      for (const entry of entries) {
-        if (entry.borderBoxSize) {
-          entry.target.childNodes[0].style.fontSize = entry.borderBoxSize[0].blockSize/2.5 + "px"
-        }
-      }
-    });
-    
-    resizeObserver.observe(callingCard);
+    this.slotElement.addEventListener("click", this.closeModalSignature);
 
     shadow.append(style, this.modal);
-    shadow.append(style, callingCard);
-  }
-
-  setupCssVariables() {
-    this.style.setProperty(
-      "--text-color",
-      this.getAttribute("text-color") || "#000000"
-    );
-    this.style.setProperty(
-      "--bg-color",
-      this.getAttribute("bg-color") || "#FAF1E3"
-    );
-    this.style.setProperty(
-      "--modal-bg-color",
-      this.getAttribute("modal-bg-color") || "#FAF1E3"
-    );
-    this.style.setProperty(
-      "--modal-text-color",
-      this.getAttribute("modal-text-color") || "#000000"
-    );
-    this.style.setProperty(
-      "--border-color",
-      this.getAttribute("border-color") || "#000000"
-    );
+    shadow.append(style, this.slotElement);
   }
 
   setupModalBackdrop() {
