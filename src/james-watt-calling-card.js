@@ -177,7 +177,7 @@ class JamesWattCallingCard extends HTMLElement {
 
     const contentLine2 = modalContent.appendChild(document.createElement("p"));
     contentLine2.innerText =
-      "You have clicked on the calling card for the creator of this site...James.Watt";
+      "You have clicked on the calling card for the creator of this site...James Watt";
 
     const portfolioLink = modalContent.appendChild(document.createElement("div"));
     portfolioLink.setAttribute("class", "portfolio-cta");
