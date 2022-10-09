@@ -76,7 +76,7 @@ class JamesWattCallingCard extends HTMLElement {
         font-family: 'Space Mono', monospace;
       }
 
-      .modal__modal-dialog {
+      .modal-dialog {
         position: relative;
         width: auto;
         margin: 50px 0.5rem 0.5rem 0.5rem;
@@ -87,14 +87,14 @@ class JamesWattCallingCard extends HTMLElement {
       }
 
       @media (min-width: 576px) {
-         .modal__modal-dialog {
+         .modal-dialog {
             max-width: 500px;
             margin-right: auto;
             margin-left: auto;
         }
       }
 
-      .modal__modal-content {
+      .modal-content {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -114,17 +114,17 @@ class JamesWattCallingCard extends HTMLElement {
         justify-content: center;
       }
 
-      .portfolio-cta p.left-arrow {
+      .portfolio-cta .left-arrow {
+        order: 1;
         transition: all 0.5s;
-        order: 1; 
       }
 
-      .portfolio-cta p.right-arrow {
-        transition: all 0.5s;
+      .portfolio-cta .right-arrow {
         order: 3;
+        transition: all 0.5s;
       }
 
-      .portfolio-cta a.link {
+      .portfolio-cta .link {
         order: 2;
         width: fit-content;
         margin: auto 0;
@@ -133,11 +133,11 @@ class JamesWattCallingCard extends HTMLElement {
         text-decoration: underline;
       }
 
-      .portfolio-cta a.link:hover + p.left-arrow {
+      .portfolio-cta .link:hover + .left-arrow {
         transform: translateX(6px);
       }
 
-      .portfolio-cta a.link:hover ~ p.right-arrow {
+      .portfolio-cta .link:hover ~ .right-arrow {
         transform: translateX(-6px);
       }
     `;
@@ -167,10 +167,10 @@ class JamesWattCallingCard extends HTMLElement {
     modal.setAttribute("class", "modal");
 
     const modalDialog = modal.appendChild(document.createElement("div"));
-    modalDialog.setAttribute("class", "modal__modal-dialog");
+    modalDialog.setAttribute("class", "modal-dialog");
 
     const modalContent = modalDialog.appendChild(document.createElement("div"));
-    modalContent.setAttribute("class", "modal__modal-content");
+    modalContent.setAttribute("class", "modal-content");
 
     const contentLine1 = modalContent.appendChild(document.createElement("p"));
     contentLine1.innerText = "Curious one aren't you?";
