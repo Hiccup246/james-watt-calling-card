@@ -109,18 +109,36 @@ class JamesWattCallingCard extends HTMLElement {
         background-color: var(--modal-bg-color);
       }
 
-      .portfolio-link {
-        width: fit-content;
-        margin: 16px auto 0 auto;
-        color: var(--modal-text-color);
-        text-decoration-color: var(--modal-text-color);
-        text-underline-offset: 0.2em;
-        transition: text-decoration-thickness 1s linear, text-underline-offset 1s linear;
+      .portfolio-cta {
+        display: flex;
+        justify-content: center;
       }
 
-      .portfolio-link:hover {
-        text-decoration-thickness: 2px;
-        text-underline-offset: 1px;
+      .portfolio-cta p.left-arrow {
+        transition: all 0.5s;
+        order: 1; 
+      }
+
+      .portfolio-cta p.right-arrow {
+        transition: all 0.5s;
+        order: 3;
+      }
+
+      .portfolio-cta a.link {
+        order: 2;
+        width: fit-content;
+        margin: auto 0;
+        color: var(--modal-text-color);
+        text-decoration-color: var(--modal-text-color);
+        text-decoration: underline;
+      }
+
+      .portfolio-cta a.link:hover + p.left-arrow {
+        transform: translateX(6px);
+      }
+
+      .portfolio-cta a.link:hover ~ p.right-arrow {
+        transform: translateX(-6px);
       }
     `;
 
@@ -161,10 +179,21 @@ class JamesWattCallingCard extends HTMLElement {
     contentLine2.innerText =
       "You have clicked on the calling card for the creator of this site...James.Watt";
 
-    const portfolioLink = modalContent.appendChild(document.createElement("a"));
-    portfolioLink.setAttribute("class", "portfolio-link");
-    portfolioLink.setAttribute("href", "https://www.jameswatt.io/");
-    portfolioLink.innerText = "-> Continue to his portfolio <-";
+    const portfolioLink = modalContent.appendChild(document.createElement("div"));
+    portfolioLink.setAttribute("class", "portfolio-cta");
+
+    const link = portfolioLink.appendChild(document.createElement("a"));
+    link.setAttribute("class", "link");
+    link.setAttribute("href", "https://www.jameswatt.io/");
+    link.innerText = "Go to his portfolio";
+
+    const leftArrow = portfolioLink.appendChild(document.createElement("p"));
+    leftArrow.setAttribute("class", "left-arrow");
+    leftArrow.innerHTML = "→&nbsp;";
+
+    const rightArrow = portfolioLink.appendChild(document.createElement("p"));
+    rightArrow.setAttribute("class", "right-arrow");
+    rightArrow.innerHTML = "&nbsp;←";
 
     return modal;
   }
