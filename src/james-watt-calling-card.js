@@ -31,13 +31,27 @@ class JamesWattCallingCard extends HTMLElement {
     const modalBackdrop = this.setupModalBackdrop();
     this.modal = this.setupModal();
 
-    this.setupGoogleFonts(shadow);
-
     this.slotElement = document.createElement("slot");
     this.slotElement.setAttribute("class", "slot")
 
     const style = document.createElement("style");
     style.innerText = `
+      @font-face {
+        font-family: 'Oswald';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./fonts/Oswald-Regular.woff') format('woff');
+      }
+
+      @font-face {
+        font-family: 'Space Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('./fonts/SpaceMono-Regular.woff2') format('woff2');
+      }
+    
       :host {
         --modal-bg-color: ${this.getAttribute("modal-bg-color") || "#FAF1E3"};
         --modal-text-color: ${this.getAttribute("modal-text-color") || "#000000"};
@@ -200,28 +214,6 @@ class JamesWattCallingCard extends HTMLElement {
     rightArrow.innerHTML = "&nbsp;←";
 
     return modal;
-  }
-
-  setupGoogleFonts(shadow) {
-    const googleFontApi = document.createElement("link");
-    googleFontApi.setAttribute("rel", "preconnect");
-    googleFontApi.setAttribute("href", "https://fonts.googleapis.com");
-
-    const googleFontGstatic = document.createElement("link");
-    googleFontGstatic.setAttribute("rel", "preconnect");
-    googleFontGstatic.setAttribute("href", "https://fonts.gstatic.com");
-    googleFontGstatic.setAttribute("crossorigin", "");
-
-    const googleFont = document.createElement("link");
-    googleFont.setAttribute(
-      "href",
-      "https://fonts.googleapis.com/css2?family=Oswald&family=Space+Mono&display=swap"
-    );
-    googleFont.setAttribute("rel", "stylesheet");
-
-    shadow.appendChild(googleFontApi);
-    shadow.appendChild(googleFontGstatic);
-    shadow.appendChild(googleFont);
   }
 
   openModal(_event, shadow, style, modal, modalBackdrop) {
