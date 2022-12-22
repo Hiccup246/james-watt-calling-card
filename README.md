@@ -2,8 +2,6 @@
 ![](https://img.shields.io/github/license/Hiccup246/james-watt-calling-card)
 ![](https://img.shields.io/github/languages/code-size/Hiccup246/james-watt-calling-card)
 ![](https://img.shields.io/npm/v/james-watt-calling-card)
-![](https://img.shields.io/snyk/vulnerabilities/npm/james-watt-calling-card)
-![](https://img.shields.io/librariesio/release/npm/james-watt-calling-card)
 
 This project represents a digital "calling card" for the owner of this repository James Watt.
 
