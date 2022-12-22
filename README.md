@@ -7,7 +7,7 @@
 
 This project represents a digital "calling card" for the owner of this repository James Watt.
 
-![](https://i.imgur.com/pdzQlyL.gif)
+![Site Gif](https://raw.githubusercontent.com/Hiccup246/james-watt-calling-card/main/src/assets/site-demo.gif)
 
 <br>
 
