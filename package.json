@@ -1,7 +1,7 @@
 {
   "name": "james-watt-calling-card",
   "customElements": "custom-elements.json",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A digital \"calling card\" for the owner of this repository James.Watt",
   "main": "index.js",
   "module": "index.js",
